@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>HTTPCalloutFrameworkException</members>
+        <members>HTTPCalloutService</members>
+        <members>HTTPCalloutServiceMock</members>
+        <members>HTTPCalloutServiceMultiMock</members>
+        <members>HTTPCalloutServiceTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>HTTPCalloutConfiguration.SFDCStopBlogs</members>
+        <members>HTTPCalloutConfiguration.TestMetadata</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>HTTPCalloutConfiguration__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>HTTPCalloutConfiguration__mdt-HTTPCalloutConfiguration Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>SFDCStopAPI</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <version>47.0</version>
+</Package>
