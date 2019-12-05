@@ -2,7 +2,7 @@
 * Application Name:- HTTPCalloutFramework
 * License:- BSD 3-Clause "New" or "Revised" License
 * Created:- 28/11/2019
-* Last Updated:- 02/12/2019
+* Last Updated:- 05/12/2019
 * Description:- This is the mock class used for single HTTP Callout during testing
 * Contributors:-
 *    1. Rahul Malhotra
@@ -21,12 +21,14 @@ public class HTTPCalloutServiceMock implements HTTPCalloutMock {
     * Constructor
     */
     public HTTPCalloutServiceMock() {
+        responseHeaders = new Map<String, String>();
     }
 
     /*
     * Constructor with response code and response body
     */
     public HTTPCalloutServiceMock(Integer responseCode, String responseBody) {
+        responseHeaders = new Map<String, String>();
         this.responseCode = responseCode;
         this.responseBody = responseBody;
     }
