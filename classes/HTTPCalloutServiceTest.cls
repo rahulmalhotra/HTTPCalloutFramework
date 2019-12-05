@@ -2,7 +2,7 @@
 * Application Name:- HTTPCalloutFramework
 * License:- BSD 3-Clause "New" or "Revised" License
 * Created:- 28/11/2019
-* Last Updated:- 02/12/2019
+* Last Updated:- 05/12/2019
 * Description:- This is the test class for HTTPCalloutService class.
 *               Test Coverage:- HttpCalloutService.cls (99%), HTTPCalloutFrameworkException.cls (100%)
 * Dependencies:- TestMetadata record in HTTPCalloutConfiguration__mdt
@@ -19,6 +19,7 @@ public class HTTPCalloutServiceTest {
     private static String ENDPOINT = 'https://www.test.com';
     private static String METHOD = 'POST';
     private static String REQUEST_BODY = '{"input":"Test Input"}';
+    private static String REQUEST_BODY_XML = '<input>Test Input</input>';
     private static String RESPONSE_BODY = '{"output":"Test Output"}';
     private static Integer RESPONSE_SUCCESS = 200;
     private static Integer TIMEOUT = 120000;
@@ -38,6 +39,43 @@ public class HTTPCalloutServiceTest {
         HTTPCalloutServiceMock testMock = new HTTPCalloutServiceMock(RESPONSE_SUCCESS, RESPONSE_BODY);
         Test.setMock(HTTPCalloutMock.class, testMock);
         HTTPCalloutService service = new HTTPCalloutService(CUSTOM_METADATA_NAME);
+        HTTPResponse testResponse = service.sendRequest();
+        System.assertEquals(RESPONSE_SUCCESS, testResponse.getStatusCode());
+        System.assertEquals(RESPONSE_BODY, testResponse.getBody());
+        Test.stopTest();
+    }
+
+    /*
+    * Testing with custom metadata record and setting blob as body
+    */
+    @isTest
+    public static void testWithCustomMetadataAndBlobInBody() {
+        Test.startTest();
+        HTTPCalloutServiceMock testMock = new HTTPCalloutServiceMock(RESPONSE_SUCCESS, RESPONSE_BODY);
+        Test.setMock(HTTPCalloutMock.class, testMock);
+        HTTPCalloutService service = new HTTPCalloutService(CUSTOM_METADATA_NAME);
+        service.setRequestBodyAsBlob(Blob.valueOf(service.getRequestBody()));
+        service.setRequestBody('');
+        // Calling sendRequest() method and passing HTTPRequest in parameter
+        HTTPResponse testResponse = service.sendRequest(service.getRequest());
+        System.assertEquals(RESPONSE_SUCCESS, testResponse.getStatusCode());
+        System.assertEquals(RESPONSE_BODY, testResponse.getBody());
+        Test.stopTest();
+    }
+
+    /*
+    * Testing with custom metadata record and setting document as body
+    */
+    @isTest
+    public static void testWithCustomMetadataAndDocumentInBody() {
+        Test.startTest();
+        HTTPCalloutServiceMock testMock = new HTTPCalloutServiceMock(RESPONSE_SUCCESS, RESPONSE_BODY);
+        Test.setMock(HTTPCalloutMock.class, testMock);
+        HTTPCalloutService service = new HTTPCalloutService(CUSTOM_METADATA_NAME);
+        Dom.Document requestDocument = new Dom.Document();
+        requestDocument.load(REQUEST_BODY_XML);
+        service.setRequestBodyAsDocument(requestDocument);
+        service.setRequestBody('');
         HTTPResponse testResponse = service.sendRequest();
         System.assertEquals(RESPONSE_SUCCESS, testResponse.getStatusCode());
         System.assertEquals(RESPONSE_BODY, testResponse.getBody());
@@ -89,6 +127,12 @@ public class HTTPCalloutServiceTest {
         System.assertEquals(METHOD, service.getRequestMethod());
         service.setRequestBody(REQUEST_BODY);
         System.assertEquals(REQUEST_BODY, service.getRequestBody());
+        service.setRequestBodyAsBlob(Blob.valueOf(REQUEST_BODY));
+        System.assertEquals(Blob.valueOf(REQUEST_BODY), service.getRequestBodyAsBlob());
+        Dom.document requestDocument = new Dom.Document();
+        requestDocument.load(REQUEST_BODY_XML);
+        service.setRequestBodyAsDocument(requestDocument);
+        System.assertEquals(requestDocument, service.getRequestBodyAsDocument());
         service.setRequestTimeout(TIMEOUT);
         System.assertEquals(TIMEOUT, service.getRequestTimeout());
         service.setIsCompressedRequest(ISCOMPRESSED);

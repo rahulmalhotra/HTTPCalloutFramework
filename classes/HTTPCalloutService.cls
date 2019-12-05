@@ -2,7 +2,7 @@
 * Application Name:- HTTPCalloutFramework
 * License:- BSD 3-Clause "New" or "Revised" License
 * Created:- 27/11/2019
-* Last Updated:- 02/12/2019
+* Last Updated:- 05/12/2019
 * Description:- This is the service class for performing HTTP Callouts
 * Contributors:-
 *    1. Rahul Malhotra
@@ -11,6 +11,8 @@ public class HTTPCalloutService {
 
     HTTPCalloutConfiguration__mdt calloutMetadata;
     String endpointURL, requestMethod, requestBody, requestCertificate;
+    Blob requestBodyAsBlob;
+    Dom.Document requestBodyAsDocument;
     Integer requestTimeout;
     Boolean isCompressedRequest;
     Map<String, String> urlParametersMap;
@@ -44,6 +46,22 @@ public class HTTPCalloutService {
 
 	public void setRequestBody(String requestBody) {
 		this.requestBody = requestBody;
+	}
+
+	public Blob getRequestBodyAsBlob() {
+		return requestBodyAsBlob;
+	}
+
+	public void setRequestBodyAsBlob(Blob requestBodyAsBlob) {
+		this.requestBodyAsBlob = requestBodyAsBlob;
+	}
+
+	public Dom.Document getRequestBodyAsDocument() {
+		return requestBodyAsDocument;
+	}
+
+	public void setRequestBodyAsDocument(Dom.Document requestBodyAsDocument) {
+		this.requestBodyAsDocument = requestBodyAsDocument;
 	}
 
 	public String getRequestCertificate() {
@@ -223,6 +241,10 @@ public class HTTPCalloutService {
         }
         if(String.isNotEmpty(requestBody)) {
             request.setBody(requestBody);
+        } else if((requestBodyAsBlob != null) &&  String.isNotEmpty(requestBodyAsBlob.toString())) {
+            request.setBodyAsBlob(requestBodyAsBlob);
+        } else if((requestBodyAsDocument != null) && String.isNotEmpty(requestBodyAsDocument.toXmlString())) {
+            request.setBodyDocument(requestBodyAsDocument);
         }
         if(requestTimeout!=null) {
             request.setTimeout(requestTimeout);
@@ -252,4 +274,11 @@ public class HTTPCalloutService {
         return http.send(request);
     }
 
+    /*
+    * This method is used to send HTTP Request received in parameter and return the response
+    */
+    public HTTPResponse sendRequest(HTTPRequest request) {
+        Http http = new Http();
+        return http.send(request);
+    }
 }
