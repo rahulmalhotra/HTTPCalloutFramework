@@ -2,9 +2,9 @@
 * Application Name:- HTTPCalloutFramework
 * License:- BSD 3-Clause "New" or "Revised" License
 * Created:- 28/11/2019
-* Last Updated:- 05/12/2019
+* Last Updated:- 07/12/2019
 * Description:- This is the test class for HTTPCalloutService class.
-*               Test Coverage:- HttpCalloutService.cls (99%), HTTPCalloutFrameworkException.cls (100%)
+*               Test Coverage:- HttpCalloutService.cls (99%)
 * Dependencies:- TestMetadata record in HTTPCalloutConfiguration__mdt
 * Contributors:-
 *    1. Rahul Malhotra
@@ -15,20 +15,20 @@ public class HTTPCalloutServiceTest {
     /*
     * Initializing constants
     */
-    private static String CUSTOM_METADATA_NAME = 'TestMetadata';
-    private static String ENDPOINT = 'https://www.test.com';
-    private static String METHOD = 'POST';
-    private static String REQUEST_BODY = '{"input":"Test Input"}';
-    private static String REQUEST_BODY_XML = '<input>Test Input</input>';
-    private static String RESPONSE_BODY = '{"output":"Test Output"}';
-    private static Integer RESPONSE_SUCCESS = 200;
-    private static Integer TIMEOUT = 120000;
-    private static Boolean ISCOMPRESSED = true;
-    private static String KEY1 = 'key1';
-    private static String KEY2 = 'key2';
-    private static String VALUE1 = 'value1';
-    private static String VALUE2 = 'value2';
-    private static String CERTIFICATE = 'Test Certificate';
+    private static final String CUSTOM_METADATA_NAME = 'TestMetadata';
+    private static final String ENDPOINT = 'https://www.test.com';
+    private static final String METHOD = 'POST';
+    private static final String REQUEST_BODY = '{"input":"Test Input"}';
+    private static final String REQUEST_BODY_XML = '<input>Test Input</input>';
+    private static final String RESPONSE_BODY = '{"output":"Test Output"}';
+    private static final Integer RESPONSE_SUCCESS = 200;
+    private static final Integer TIMEOUT = 120000;
+    private static final Boolean ISCOMPRESSED = true;
+    private static final String KEY1 = 'key1';
+    private static final String KEY2 = 'key2';
+    private static final String VALUE1 = 'value1';
+    private static final String VALUE2 = 'value2';
+    private static final String CERTIFICATE = 'Test Certificate';
 
     /*
     * Testing with predefined custom metadata record
