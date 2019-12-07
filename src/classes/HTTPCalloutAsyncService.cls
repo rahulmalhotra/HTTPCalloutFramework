@@ -10,8 +10,8 @@
 public class HTTPCalloutAsyncService {
 
     List<String> requestLabels;
-    List<HTTPRequest> httpRequests;
-    Map<String, HTTPRequest> requestMap;
+    Transient List<HTTPRequest> httpRequests;
+    Transient Map<String, HTTPRequest> requestMap;
     Integer requestTimeout;
     public static final Integer CONTINUATION_LIMIT = 3;
     public static final String CONTINUATION_STATE = 'Continuation State';
