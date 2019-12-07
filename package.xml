@@ -5,6 +5,8 @@
         <members>HTTPCalloutService</members>
         <members>HTTPCalloutServiceMock</members>
         <members>HTTPCalloutServiceMultiMock</members>
+        <members>HTTPCalloutAsyncService</members>
+        <members>HTTPCalloutAsyncServiceTest</members>
         <members>HTTPCalloutServiceTest</members>
         <name>ApexClass</name>
     </types>
