@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>SFDCStopBlogs</label>
+    <label>SFDCStopApps</label>
     <protected>false</protected>
     <values>
         <field>Body__c</field>
@@ -12,13 +12,11 @@
     </values>
     <values>
         <field>Endpoint__c</field>
-        <value xsi:type="xsd:string">https://sfdcstop.herokuapp.com/blogs</value>
+        <value xsi:type="xsd:string">https://sfdcstop.herokuapp.com/apps</value>
     </values>
     <values>
         <field>HeaderParameters__c</field>
-        <value xsi:type="xsd:string">key1:
-key2:value2
-key3:value3</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>IsCompressed__c</field>
@@ -34,7 +32,6 @@ key3:value3</value>
     </values>
     <values>
         <field>URLParameters__c</field>
-        <value xsi:type="xsd:string">key1:
-key2:value2</value>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>

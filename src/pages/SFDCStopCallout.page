@@ -1,0 +1,56 @@
+<apex:page controller="BlogsContinuationController">
+    <apex:form >     
+        <apex:pageBlock title="HTTP Callout Framework Continuation" id="mainBlock">
+        	<apex:commandButton action="{!sendAsyncCalloutRequest}" value="Send Request"  reRender="mainBlock"/>
+            <br /><br />
+            <apex:pageBlock title="{!bWrapper.Author + ' Blogs List'}">
+                <apex:pageBlockTable value="{!bWrapper.blogs}" var="blog">
+                    <apex:column >
+                        <apex:facet name="header">Id</apex:facet>
+                        {!blog.id}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Title</apex:facet>
+                        {!blog.title}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Url</apex:facet>
+                        <apex:outputLink value="{!blog.url}" id="url" target="_blank">{!blog.url}</apex:outputLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>    
+            <apex:pageBlock title="{!aWrapper.Author + ' Apps List'}">
+                <apex:pageBlockTable value="{!aWrapper.apps}" var="app">
+                    <apex:column >
+                        <apex:facet name="header">Id</apex:facet>
+                        {!app.id}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Title</apex:facet>
+                        {!app.title}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Url</apex:facet>
+                        <apex:outputLink value="{!app.url}" id="url" target="_blank">{!app.url}</apex:outputLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>    
+            <apex:pageBlock title="{!sWrapper.Author + ' Sessions List'}">
+                <apex:pageBlockTable value="{!sWrapper.sessions}" var="session">
+                    <apex:column >
+                        <apex:facet name="header">Id</apex:facet>
+                        {!session.id}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Title</apex:facet>
+                        {!session.title}
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Url</apex:facet>
+                        <apex:outputLink value="{!session.url}" id="url" target="_blank">{!session.url}</apex:outputLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlock>    
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

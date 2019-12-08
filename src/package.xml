@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>HTTPCalloutFrameworkException</members>
-        <members>HTTPCalloutService</members>
-        <members>HTTPCalloutServiceMock</members>
-        <members>HTTPCalloutServiceMultiMock</members>
-        <members>HTTPCalloutAsyncService</members>
-        <members>HTTPCalloutAsyncServiceTest</members>
-        <members>HTTPCalloutServiceTest</members>
+        <members>BlogsContinuationController</members>
+        <members>BlogsContinuationLightningController</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>SFDCStopCallout</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>BlogsContinuationApp</members>
+        <members>BlogsContinuationCmp</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>HTTPCalloutConfiguration.SFDCStopApps</members>
         <members>HTTPCalloutConfiguration.SFDCStopBlogs</members>
-        <members>HTTPCalloutConfiguration.TestMetadata</members>
+        <members>HTTPCalloutConfiguration.SFDCStopSessions</members>
         <name>CustomMetadata</name>
-    </types>
-    <types>
-        <members>HTTPCalloutConfiguration__mdt</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>HTTPCalloutConfiguration__mdt-HTTPCalloutConfiguration Layout</members>
-        <name>Layout</name>
     </types>
     <types>
         <members>SFDCStopAPI</members>

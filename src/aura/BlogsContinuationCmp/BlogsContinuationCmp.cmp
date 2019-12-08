@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="BlogsContinuationLightningController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="blogdata" type="Object" />
+    <aura:attribute name="appdata" type="Object" />
+    <aura:attribute name="sessiondata" type="Object" />
+    <lightning:card title="{! v.blogdata.author + ' Blogs List'}">
+        <p class="slds-p-horizontal_small">
+	       <lightning:datatable
+                keyField="id"
+                data="{!v.blogdata.blogs}"
+                columns="{!v.columns}"
+                hideCheckboxColumn="true"/>
+        </p>
+    </lightning:card>
+    <lightning:card title="{! v.appdata.author + ' Apps List'}">
+        <p class="slds-p-horizontal_small">
+	       <lightning:datatable
+                keyField="id"
+                data="{!v.appdata.apps}"
+                columns="{!v.columns}"
+                hideCheckboxColumn="true"/>
+        </p>
+    </lightning:card>
+    <lightning:card title="{! v.sessiondata.author + ' Sessions List'}">
+        <p class="slds-p-horizontal_small">
+	       <lightning:datatable
+                keyField="id"
+                data="{!v.sessiondata.sessions}"
+                columns="{!v.columns}"
+                hideCheckboxColumn="true"/>
+        </p>
+    </lightning:card>
+</aura:component>
