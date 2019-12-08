@@ -54,6 +54,8 @@ that can be used by placing it inside the metadata folder of the application str
 
 ## Usage
 
+### Synchronous Callouts
+
 Once installed you'll see the below custom metadata records created in your org:-
 
 ![HTTPCalloutConfigurationMetadata](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/Images/HTTPCalloutConfigurationMetadata.JPG)
@@ -83,6 +85,92 @@ You can check the logs once the code is executed and it should have the output a
 Custom metadata and remote site setting record of SFDC Stop API are for demo purposes only. 
 You can delete these records after installation and create your own records for HTTP callouts.
 Make sure you **Do not delete the TestMetadata** record  of HTTPCalloutConfiguration custom metadata as it's being used in the test class for code coverage.
+
+### Asynchronous Callouts
+
+Now, let's jump on to the asynchronous apex callouts part. As you must be aware that the asynchronous callouts in apex are implemented using the [Continuation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_class_System_Continuation.htm) class. The continuation class has different syntax for Visualforce Pages and Lightning Components. So, we're going to see the syntax for implementation in both cases. The good thing is that we have a single [HTTPCalloutAsyncService](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/classes/HTTPCalloutAsyncService.cls) class that we can use for both Visualforce Pages and Lightning Components.
+
+#### Visualforce Page
+
+The syntax of vf page controller is given below:-
+
+```apex
+HTTPCalloutAsyncService service {get;set;} // Creating an instance of HTTPCalloutAsyncService in controller
+List<String> requestLabels; // This list will be used to store the request labels returned by the continuation process
+// Define your action method (should have return type of Object)
+public Object sendAsyncCalloutRequest() {
+    service = new HTTPCalloutAsyncService(<Integer Timeout>, new List<String> {<CustomMetadata1>, <CustomMetadata2>, <CustomMetadata3>});       
+    Continuation con = service.sendRequest('getAsyncCalloutResponse'); // Pass the callback method name in the parameter
+    requestLabels = service.getRequestLabels(); // Storing the request labels returned by continuation
+    return con; // Returning the continuation
+}
+
+// Define a callback method with the same name as passed in the sendRequest method of service class
+public Object getAsyncCalloutResponse() {
+    // Getting a list of responses by passing the request labels in the parameter
+    List<HTTPResponse> responses = service.getResponse(requestLabels);
+    // Process the responses (Set variables that are being used in VF Page)
+    // Returning null to re-render the vf page
+    return null;
+}
+```
+
+The visualforce page should have an command button calling our controller method as shown below:-
+```html
+<apex:commandButton action="{!sendAsyncCalloutRequest}" value="Send Request"  reRender="<id of the block to re render>"/>
+```
+
+#### Lightning Component
+
+The syntax of lightning component controller is given below:-
+
+```apex
+// This method will be called from lightning component (should have return type of Object)
+@AuraEnabled(cacheable=true continuation=true)
+public static Object fetchData() {
+    HTTPCalloutAsyncService service = new HTTPCalloutAsyncService(<Integer Timeout>, new List<String> {<CustomMetadata1>, <CustomMetadata2>, <CustomMetadata3>});
+    return service.sendRequest('sendResponse'); // Pass the response method name in the parameter
+}
+
+// Define a callback method with the same name as passed in the sendRequest method of service class
+@AuraEnabled(cacheable=true)
+public static Object sendResponse(List<String> labels, Object state) {
+    HTTPCalloutAsyncService service = new HTTPCalloutAsyncService(<Integer Timeout>, new List<String> {<CustomMetadata1>, <CustomMetadata2>, <CustomMetadata3>});
+    // Getting a list of responses by passing the request labels in the parameter
+    List<HTTPResponse> responses = service.getResponse(labels);
+    // Process the responses (Create a wrapper to send the response)
+    // Returning the wrapper in JSON format back to lightning component
+    return JSON.serialize(<wrapper>);
+}
+```
+
+We should have call our apex method in lightning component helper as shown below:-
+```js
+var fetchDataAction = component.get('c.fetchData');
+fetchDataAction.setCallback(this, function(response) {
+  if(response.getState() === 'SUCCESS') {
+    var data = JSON.parse(response.getReturnValue());
+  }
+}
+$A.enqueueAction(fetchDataAction);
+```
+
+I have created a working example for both VF and Lightning that you can deploy in your org by clicking the below button. **Make sure that you've installed the framework in your org first otherwise the deployment of examples will fail.**
+
+<a href="https://githubsfdeploy.herokuapp.com?owner=rahulmalhotra&repo=HTTPCalloutFramework&ref=asyncexample">
+  <img alt="Deploy Asynchronous Examples to Salesforce"
+       src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
+The working example consist of a VF Page named **SFDCStopCallout** and a Lightning Application named **BlogsContinuationApp** that will make an asynchronous continuation call to SFDC Stop APIs and fetch the data using our framework.
+
+*Visualforce Page Output :-*
+
+![SFDCStopCalloutVFPage](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/Images/SFDCStopCalloutVFPage.JPG)
+
+*Lightning Component Output :-*
+
+![BlogsContinuationApp](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/Images/BlogsContinuationApp.JPG)
 
 ## Tools and Softwares used
 
