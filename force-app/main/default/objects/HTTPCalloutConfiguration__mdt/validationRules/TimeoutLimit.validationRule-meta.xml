@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeoutLimit</fullName>
+    <active>true</active>
+    <description>Request timeout cannot be greater than 120000</description>
+    <errorConditionFormula>Timeout__c &gt; 120000</errorConditionFormula>
+    <errorMessage>Maximum timeout you can specify is 120000</errorMessage>
+</ValidationRule>

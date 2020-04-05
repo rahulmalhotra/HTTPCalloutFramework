@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Method__c</fullName>
+    <description>HTTP Method used for callout</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>HTTP Method used for callout</inlineHelpText>
+    <label>Method</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GET</fullName>
+                <default>true</default>
+                <label>GET</label>
+            </value>
+            <value>
+                <fullName>POST</fullName>
+                <default>false</default>
+                <label>POST</label>
+            </value>
+            <value>
+                <fullName>DELETE</fullName>
+                <default>false</default>
+                <label>DELETE</label>
+            </value>
+            <value>
+                <fullName>PUT</fullName>
+                <default>false</default>
+                <label>PUT</label>
+            </value>
+            <value>
+                <fullName>PATCH</fullName>
+                <default>false</default>
+                <label>PATCH</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
