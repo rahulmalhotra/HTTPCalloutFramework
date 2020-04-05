@@ -2,11 +2,9 @@
 * Application Name:- HTTPCalloutFramework
 * License:- BSD 3-Clause "New" or "Revised" License
 * Created:- 07/12/2019
-* Last Updated:- 07/12/2019
+* Last Updated:- 05/04/2020
 * Description:- This is the test class for HTTPCalloutAsyncService class.
-*               Test Coverage:- HttpCalloutAsyncService.cls (98%)
-*               Test Coverage can be raised to 100% by creating more than 3 custom metadata records,
-*               and covering continuation limit exceeded exception scenario for custom metadata
+*               Test Coverage:- HttpCalloutAsyncService.cls (100%)
 * Dependencies:- TestMetadata record in HTTPCalloutConfiguration__mdt
 * Contributors:-
 *    1. Rahul Malhotra
@@ -109,6 +107,20 @@ public class HTTPCalloutAsyncServiceTest {
         System.assertEquals(mockResponses[0].getBody(), responses[0].getBody());
         System.assertEquals(mockResponses[1].getBody(), responses[1].getBody());
         System.assertEquals(mockResponses[2].getBody(), responses[2].getBody());
+        Test.stopTest();
+    }
+
+    /*
+    * Testing with predefined custom metadata record and request limit exceeded
+    */
+    @isTest
+    public static void testWithCustomMetadataRequestLimitExceeded() {
+        Test.startTest();
+        try {
+            HTTPCalloutAsyncService service = new HTTPCalloutAsyncService(TIMEOUT, new List<String>{ CUSTOM_METADATA_NAME, CUSTOM_METADATA_NAME, CUSTOM_METADATA_NAME, CUSTOM_METADATA_NAME });
+        } catch(Exception e) {
+            System.assertEquals(HTTPCalloutFrameworkException.CONTINUATION_LIMIT_EXCEEDED, e.getMessage());
+        }
         Test.stopTest();
     }
 }
