@@ -179,7 +179,7 @@ public class HTTPCalloutService {
             Map<String, String> parametersMap = new Map<String, String>();
             List<String> parameters = parameterInfo.split('\n');
             for(String urlParam : parameters) {
-                List<String> keyValuePair = urlParam.deleteWhitespace().split(':');
+                List<String> keyValuePair = urlParam.trim().split(':');
                 if(!keyValuePair.isEmpty()) {
                     if(keyValuePair.size() == 2) {
                         if(String.isNotEmpty(keyValuePair[0]) && String.isNotEmpty(keyValuePair[1])) {

@@ -36,14 +36,12 @@ $RECYCLE.BIN/
 
 #Not needed in framework
 .vscode
-config
 .eslintignore
 .forceignore
 .prettierignore
 .prettierrc
 package.json
 scripts
-sfdx-project.json
 force-app/main/default/aura
 force-app/main/default/applications
 force-app/main/default/contentassets
