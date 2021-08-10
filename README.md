@@ -23,7 +23,7 @@ git clone https://github.com/rahulmalhotra/HTTPCalloutFramework.git
 
 ### Installing
 
-HTTPCalloutFramework is very easy to use. You can install this application in your salesforce org by using the **deploy to salesforce** button
+HTTPCalloutFramework is very easy to use. You can install this application in your salesforce org as an unmanaged package or by using the **deploy to salesforce** button
 present in the [deployment](#deployment) section of this readme. Installing this will add the following to your org :- 
 
 1. HTTPCalloutService - Apex Class
@@ -33,9 +33,9 @@ present in the [deployment](#deployment) section of this readme. Installing this
 5. HTTPCalloutServiceTest - Apex Class
 6. HTTPCalloutConfiguration - Custom Metadata
 7. TestMetadata - HTTPCalloutConfiguration record used in test class (should not be deleted)
-8. SFDCStopBlogs - HTTPCalloutConfiguration record (For demo purposes - can be deleted)
+8. SFDCStopBlogs - HTTPCalloutConfiguration record (Not included in unmanaged package. For demo purposes - can be deleted if installed through deploy to salesforce button)
 9. HTTPCalloutConfiguration Layout - Layout for HTTPCalloutConfiguration metadata
-10. SFDCStopAPI - Remote Site Settings record for SFDC Stop API (For demo purposes - can be deleted)
+10. SFDCStopAPI - Remote Site Settings record for SFDC Stop API (Not included in unmanaged package. For demo purposes - can be deleted if installed through deploy to salesforce button)
 
 **HTTPCalloutFramework** is now ready for use.
 
@@ -48,9 +48,23 @@ You can deploy HTTPCalloutFramework directly to your org by clicking the button 
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
-An alternative way can be to use [SFDX Deploy Tool](https://github.com/rahulmalhotra/SFDX-Deploy-Tool) for deployment.
-For that you can download the zip directly and rename it to unpackaged
-that can be used by placing it inside the metadata folder of the application structure
+I have also created an unmanaged package so that you can install it in your org very easily if you don't wish to use the above button.
+
+<a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04t7F0000054q4h">Click Here</a> to install the package now in a production/developer environment.
+
+or use the below URL:-
+
+```
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04t7F0000054q4h
+```
+
+<a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04t7F0000054q4h">Click Here</a> to install the package now in a sandbox environment.
+
+or use the below URL:-
+
+```
+https://test.salesforce.com/packaging/installPackage.apexp?p0=04t7F0000054q4h
+```
 
 ## Usage
 
