@@ -102,7 +102,7 @@ Make sure you **Do not delete the TestMetadata** record  of HTTPCalloutConfigura
 
 ### Asynchronous Callouts
 
-Now, let's jump on to the asynchronous apex callouts part. As you must be aware that the asynchronous callouts in apex are implemented using the [Continuation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_class_System_Continuation.htm) class. The continuation class has different syntax for Visualforce Pages and Lightning Components. So, we're going to see the syntax for implementation in both cases. The good thing is that we have a single [HTTPCalloutAsyncService](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/classes/HTTPCalloutAsyncService.cls) class that we can use for both Visualforce Pages and Lightning Components.
+Now, let's jump on to the asynchronous apex callouts part. As you must be aware that the asynchronous callouts in apex are implemented using the [Continuation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_class_System_Continuation.htm) class. The continuation class has different syntax for Visualforce Pages and Lightning Components. So, we're going to see the syntax for implementation in both cases. The good thing is that we have a single [HTTPCalloutAsyncService](https://github.com/rahulmalhotra/HTTPCalloutFramework/blob/master/force-app/main/default/classes/HTTPCalloutAsyncService.cls) class that we can use for both Visualforce Pages and Lightning Components.
 
 #### Visualforce Page
 
@@ -194,7 +194,7 @@ However I like to use VS Code IDE to keep a local copy of code on my system too.
 I use SFDX Deploy Tool. So below are the tools or softwares I use personally :-
 
 * [VS Code](https://code.visualstudio.com) - Open Source IDE for Salesforce
-* [SFDX Deploy Tool](https://github.com/rahulmalhotra/SFDX-Deploy-Tool) - SFDX Deploy Tool for Windows
+* [SFDX Deploy Tool](https://github.com/rahulmalhotra/SFDX-Deploy-Tool) - SFDX Deploy Tool for Windows and Mac
 
 ## Todo
 
